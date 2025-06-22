@@ -1,0 +1,33 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.canvas{
+    width: 100vw;
+    height: 100vh;
+    background-color: #343f4b;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.board {
+    border-radius: 1%;
+    width: 95vw;
+    height: 95vh;
+    background-color: #1b2127;
+    border: 5px solid #1b2127;
+    transition-duration: 400ms;
+}
+
+.board:hover {
+    box-shadow: 1px 1px 15px;
+
+}
+.addbtn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
