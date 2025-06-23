@@ -2,24 +2,36 @@ let nodes = []
 let edges = []
 
 const interactiveBoard = document.getElementById("interactiveBoard")
-// const node = document.querySelectorAll(".nodes")
+const options = document.getElementById("options")
+
 interactiveBoard.addEventListener("click", (e) =>{
     const container = document.createElement("div");
     container.className = "nodes"
-    container.clas
     container.style.position = "absolute"
     container.style.top = e.clientY + "px"
     container.style.left = e.clientX + "px"
     container.style.display = "block"
     container.style.cursor = "move"
+    container.style.transitionDuration = 0
     
     const input = document.createElement("input")
     container.appendChild(input)
-
-    // input.addEventListener("dblclick", (e) => {
-    //     e.stopPropagation()
-    // })
     
+    input.readOnly = true
+    
+    input.addEventListener("dblclick", ()=>{
+        input.readOnly = false
+    })
+
+    input.addEventListener("keydown", (e)=> {
+
+        const keyPressed = e.key
+
+        if (keyPressed == "Enter") {
+            input.readOnly = true
+        }
+         
+    })
     options.appendChild(container)
 
     setTimeout(() => {
@@ -32,7 +44,7 @@ interactiveBoard.addEventListener("click", (e) =>{
     let offsetY = 0;
 
     container.addEventListener("mousedown", (e) => {
-        input.blur()
+        
         offsetX = e.clientX - container.offsetLeft;
         offsetY = e.clientY - container.offsetTop;
         document.addEventListener("mousemove", mouseMove);
