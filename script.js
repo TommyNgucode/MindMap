@@ -45,8 +45,8 @@ interactiveBoard.addEventListener("click", (e) =>{
     // Add node to nodes list
     nodes.push({
         el: container,
-        x: e.clientX + rect.width / 2,
-        y: e.clientY + rect.height / 2
+        x: e.clientX,
+        y: e.clientY 
     })
 
     // Drag/ Move node
@@ -62,8 +62,8 @@ interactiveBoard.addEventListener("click", (e) =>{
     });
     
     // get all rendering content of canvas
-    const ctx = interactiveBoard.getContext("2d")
-    const rect = interactiveBoard.getBoundingClientRect()
+    // const ctx = interactiveBoard.getContext("2d")
+    // const rect = interactiveBoard.getBoundingClientRect()
     
     function mouseMove(e) {
         container.style.left = (e.clientX - offsetX) + "px";
@@ -71,43 +71,43 @@ interactiveBoard.addEventListener("click", (e) =>{
 
         // Detect nearby nodes
 
-        const currX = parseFloat(container.style.left = (e.clientX - offsetX) + "px")
-        const currY = parseFloat(container.style.top = (e.clientY - offsetY) + "px")
+        // const currX = parseFloat(container.style.left = (e.clientX - offsetX) + "px")
+        // const currY = parseFloat(container.style.top = (e.clientY - offsetY) + "px")
 
 
-        ctx.clearRect(0, 0, interactiveBoard.width, interactiveBoard.height); // clear canvas to avoid overdraw
+        // ctx.clearRect(0, 0, interactiveBoard.width, interactiveBoard.height); // clear canvas to avoid overdraw
 
-        nodes.forEach((node) =>{
-            const nodeX = node.x - rect.left
-            const nodeY = node.y - rect.top
+        // nodes.forEach((node) =>{
+        //     const nodeX = node.x - rect.left
+        //     const nodeY = node.y - rect.top
 
             
-            // calculate distance formula
-            const distance = Math.sqrt(((nodeX - currX) ** 2) + ((nodeY - currY) ** 2))
+        //     // calculate distance formula
+        //     const distance = Math.sqrt(((nodeX - currX) ** 2) + ((nodeY - currY) ** 2))
 
-            // Connect nodes
-            if (distance <= 70) {
+        //     // Connect nodes
+        //     if (distance <= 70) {
 
-                const edge = `${currX},${currY}-${nodeX},${nodeY}`
-                const reverseEdge = `${nodeX},${nodeY}-${currX},${currY}`
+        //         const edge = `${currX},${currY}-${nodeX},${nodeY}`
+        //         const reverseEdge = `${nodeX},${nodeY}-${currX},${currY}`
 
-                // if edge doesnt exist add
-                if (!edges.includes(edge) && !edges.includes(reverseEdge)) {
-                    edges.push(edge)
-                    edges.push(reverseEdge)
+        //         // if edge doesnt exist add
+        //         if (!edges.includes(edge) && !edges.includes(reverseEdge)) {
+        //             edges.push(edge)
+        //             edges.push(reverseEdge)
 
-                    // draw line between
-                    ctx.lineWidth = 2
-                    ctx.beginPath()
-                    ctx.moveTo(currX, currY)
-                    ctx.lineTo(nodeX, nodeY)
-                    ctx.stroke()
+        //             // draw line between
+        //             ctx.lineWidth = 2
+        //             ctx.beginPath()
+        //             ctx.moveTo(currX, currY)
+        //             ctx.lineTo(nodeX, nodeY)
+        //             ctx.stroke()
 
-                }
+        //         }
 
-            }
+        //     }
 
-        })
+        // })
     }
 
     function mouseUp() {
